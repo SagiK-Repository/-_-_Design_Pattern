@@ -1,2 +1,5 @@
-# -_-_Design_Pattern
-디자인 패턴 정리
+문서정보 : 2023.10.20. 작성, 작성자 [@SAgiKPJH](https://github.com/SAgiKPJH)
+
+<br>
+
+# Design Pattern
