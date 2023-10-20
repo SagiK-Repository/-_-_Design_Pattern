@@ -213,3 +213,15 @@ public class CarBuilder
 </details>
 
 <br>
+
+### 프로토 타입
+
+- 기존 객체를 복제하여 새로운 객체를 생성하는 디자인 패턴
+- 객체 생성 비용이 높거나 복잡한 경우에 유용하며, 새로운 객체를 만들기 위해 동일한 초기화 과정을 반복하지 않고도 효율적으로 객체를 생성할 수 있다.
+```cs
+var clonedCircle = circle.Clone() as Circle;
+clonedCircle.Draw();
+```
+
+
+<br>
