@@ -62,6 +62,44 @@
 
 <br><br>
 
+# 0. 간단 노트
+
+- SOLID 원칙(Principle)
+  - SRP : 사칙연산을 책임지는 함수 (단일 책임, Single Responsibility)
+  - OCP : 갈아끼울거(IShape 상속 -> Circle) 추가(확장 Open)해도 다른거(AreaCalculator) 수정 없도록(수정 Close) 구성 (개방-폐쇠, Open-Closed)
+  - LSP : 참새와 타조 : Bird, 하지만 타조 Fly 불가. 더 분리해야 한다. (리스코프 치환, Liskov Substitution)
+  - ISP : 인터페이스 SRP, 인터페이스로 인해 사용하지 않는 내용(함수)가 생기면 그 인터페이스를 분리하자. (인터페이스 분리, Interface Segregation)
+  - DIP : 갈아끼우기 (의존성 역전, Dependency Inversion)
+- 생성 패턴
+  - 팩토리 패턴 : 객체 생성에 있어서, 서브 클래스에 위임하는 방법. 직접 생성 없이 팩토리 메서드로 원하는 동물 객체를 얻을 수 있다.
+    ```cs 
+    Dog youDog = newDog(); // 직접 생성 X하도록 합니다.
+
+    IAnimal myDog = AnimalFactory.CreateAnimal("Dog");
+    myDog.Speak();  // Outputs: Bark!
+    
+    IAnimal myCat = AnimalFactory.CreateAnimal("Cat");
+    myCat.Speak();  // Outputs: Meow!
+    ```
+  - 추상 팩토리 : 팩토리의 팩토리, 시스템 독립 + 유연성 확보
+    ```cs
+    IAnimalFactory dogFactory = new DogFactory();
+    IAnimal myDog = dogFactory.CreateANimal();
+    myDog.Speak();  // Outputs: Bark!
+    ```
+  - 빌더 패턴 : 동일한 생성 절차에 다른 결과, 필요한 정보가 모두 입력될 때까지 객체 생성을 지연 후 생성 가능
+    ```cs
+    Car car = new CarBuilder() // 내부에 Car car가 있다.
+                  .SetMake("Toyota") // Car 내부 변수 지정 1
+                  .SetModel("Corolla") // Car 내부 변수 지정 2
+                  .SetYear(2023) // Car 내부 변수 지정 3
+                  .Build(); // Build() : Return car
+    
+    Console.WriteLine(car.ToString()); // Outputs: Make: Toyota, Model: Corolla, Year: 2023, // Car 함수
+    ```
+  - 프로토 타입 패턴 : ~~.Clone(), 기존 객체 동일 복제, 복제가 복잡한 경우 활용.
+  - 싱글톤 패턴 : 클래스 내 공유자원으로 리소스 낭비 감소, private 생성자 + lock등을 활용.
+- 구조 패턴
 
 <br><br>
 
@@ -129,7 +167,6 @@ public static class AnimalFactory
 </details>
 
 <br>
-
 
 ### 추상 팩토리 패턴 (Abstract Factory)
 - 팩토리의 팩토리
