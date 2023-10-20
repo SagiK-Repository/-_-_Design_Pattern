@@ -143,3 +143,73 @@ myDog.Speak();  // Outputs: Bark!
 ```
 
 <br>
+
+### 빌더 패턴 (Builder)
+
+- 복잡한 객체의 생성 과정과 표현 방법을 분리
+- 동일한 생성 절차에서 서로 다른 표현 결과를 만들 수 있게 하는 디자인 패턴
+- 빌더 패턴은 필요한 정보가 모두 입력될 때까지 객체 생성을 지연하고, 최종적인 결과물이 필요할 때까지 여러 단계에 걸쳐 구축되어야 할 경우 유용
+```cs
+Car car = new CarBuilder() // 내부에 Car car가 있다.
+              .SetMake("Toyota")
+              .SetModel("Corolla")
+              .SetYear(2023)
+              .Build(); // Build() : Return car
+
+Console.WriteLine(car.ToString()); // Outputs: Make: Toyota, Model: Corolla, Year: 2023, // Car 함수
+```
+
+<details><summary>접기/펼치기</summary>
+
+- Code
+```cs
+public class Car
+{
+    public string Make { get; set; }
+    public string Model { get; set; }
+    public int Year { get; set; }
+
+    public override string ToString()
+    {
+        return $"Make: {Make}, Model: {Model}, Year: {Year}";
+    }
+}
+
+public class CarBuilder
+{
+   private Car _car;
+
+   public CarBuilder()
+   {
+       _car = new Car();
+   }
+
+   public CarBuilder SetMake(string make)
+   {
+       _car.Make = make;
+       return this;
+   }
+
+   public CarBuilder SetModel(string model)
+   {
+       _car.Model = model;
+       return this;
+   }
+
+   public CarBuilder SetYear(int year)
+   {
+       _car.Year = year;
+       return this;
+  }
+
+  public Car Build()
+  {
+      return _car;
+  }
+}
+
+```
+
+</details>
+
+<br>
