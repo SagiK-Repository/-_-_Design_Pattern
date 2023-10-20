@@ -130,3 +130,16 @@ public static class AnimalFactory
 
 <br>
 
+
+### 추상 팩토리 패턴 (Abstract Factory)
+- 팩토리의 팩토리
+- 추상 팩토리 패턴은 관련된 객체 그룹을 함께 생성해야 할 때 유용
+- 시스템을 독립적으로 만들되, 여전히 유연성을 유지할 수 있게 합니다.
+- 새로운 종류의 객체 집합을 쉽게 통합할 수 있도록 지원하며, 이로써 시스템의 확장성을 높이는 데 도움
+```cs
+IAnimalFactory dogFactory = new DogFactory();
+IAnimal myDog = dogFactory.CreateANimal();
+myDog.Speak();  // Outputs: Bark!
+```
+
+<br>
