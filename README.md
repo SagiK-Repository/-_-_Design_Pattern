@@ -61,3 +61,72 @@
   - 갈아끼울 수 있어야 한다.
 
 <br><br>
+
+
+<br><br>
+
+# 1. 생성 패턴
+
+### 팩토리 패턴 (Factory Method)
+
+- 객체를 생성하도록 하는 디자인 패턴
+- 객체 생성 로직을 서브 클래스에게 위임
+- 사용자가 직접 클래스 X, 팩토리 메서드를 통해 객체를 생성하도록 하는 디자인 패턴
+- Example
+  - 클라이언트 코드에서 직접 개나 고양이 객체를 생성하지 않고, 팩토리 메서드로 원하는 동물 객체를 얻을 수 있습니다.
+```cs
+Dog youDog = newDog(); // 직접 생성 X하도록 합니다.
+
+IAnimal myDog = AnimalFactory.CreateAnimal("Dog");
+myDog.Speak();  // Outputs: Bark!
+
+IAnimal myCat = AnimalFactory.CreateAnimal("Cat");
+myCat.Speak();  // Outputs: Meow!
+```
+
+<details><summary>접기/펼치기</summary>
+
+- Code
+```cs
+public interface IAnimal
+{
+    void Speak();
+}
+
+public class Dog : IAnimal
+{
+    public void Speak()
+    {
+        Console.WriteLine("Bark!");
+    }
+}
+
+public class Cat : IAnimal
+{
+    public void Speak()
+    {
+        Console.WriteLine("Meow!");
+    }
+}
+
+public static class AnimalFactory
+{
+   public static IAnimal CreateAnimal(string animalType)
+   {
+       switch (animalType)
+       {
+           case "Dog":
+               return new Dog();
+           case "Cat":
+               return new Cat();
+           default:
+               throw new ArgumentException("Invalid animal type");
+       }
+   }
+}
+```
+
+</details>
+
+<br>
+
