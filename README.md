@@ -225,3 +225,59 @@ clonedCircle.Draw();
 
 
 <br>
+
+### 싱글톤 패턴 (Singleton)
+
+- 특정 클래스의 인스턴스가 오직 하나만 존재하도록 보장
+- 전역적으로 접근 가능한 공유 인스턴스를 제공, 객체의 생성과 관련된 리소스 사용을 최소화
+- 특징
+  - private 생성자
+```cs
+Singleton instance1 = Singleton.GetInstance();
+Singleton instance2 = Singleton.GetInstance();
+
+Console.WriteLine(instance1 == instance2);  // Outputs: True, 한번 정의로 공통적으로 동작 (자원공유로 인한 리소스 낭비 감소)
+
+instance1.SomeMethod();  // Call methods on the singleton instance
+```
+
+
+<details><summary>접기/펼치기</summary>
+
+- Code
+```cs
+public class Singleton
+{
+    private static Singleton _instance;
+    private static readonly object _lock = new object();
+
+    // 외부에서 객체 생성 방지
+    private Singleton() { }
+
+    public static Singleton GetInstance()
+    {
+        if (_instance == null)
+        {
+            lock (_lock)
+            {
+                if (_instance == null)
+                {
+                    _instance = new Singleton();
+                }
+            }
+        }
+        return _instance;
+    }
+
+    public void SomeMethod()
+    {
+        // 싱글톤 객체의 동작 정의
+    }
+}
+```
+
+</details>
+
+<br>
+
+<br><br>
